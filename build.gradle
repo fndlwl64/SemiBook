@@ -15,6 +15,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	/*lombok*/
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	/*devtools*/
+	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.0'
 }
 
 tasks.named('test') {
