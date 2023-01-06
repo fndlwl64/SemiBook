@@ -1,2 +1,3 @@
-package com.semi.book.dto;public class MemberDTO {
+package com.semi.book.dto;
+public class MemberDTO {
 }
