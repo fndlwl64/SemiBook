@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,8 +23,9 @@ public class MemberApiController {
         System.out.println("memberDTO.toString() = " + memberDTO.toString());
         return memberDTO;
     }
-    @GetMapping("/get/member/content")
+    @GetMapping("/get/member/list")
     public List<Member> getMemberContent(){
         return memberRepository.findAll();
     }
+
 }
