@@ -1,5 +1,6 @@
 package com.semi.book;
 
+import com.semi.book.domain.Grade;
 import com.semi.book.domain.Member;
 import com.semi.book.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -23,16 +24,16 @@ class BookApplicationTests {
 	@Transactional
 	public void putMemberTest(){
 		Member member = new Member();
-		member.setMember_no(1L);
-		member.setMember_name("JOJO");
-		member.setMember_id("STAR PLATINUM");
-
+		member.setName("JOJO");
+		member.setUser_id("STAR PLATINUM");
+		member.setGrade(Grade.NORMAL);
 		memberRepository.save(member);
 
 		Member findMember = memberRepository.findById((long) 1).get();
-		assertEquals(findMember.getMember_no(), 1L);
-		assertEquals(findMember.getMember_name(), "JOJO");
-		assertEquals(findMember.getMember_id(),"STAR PLATINUM");
+		assertEquals(findMember.getId(), 1L);
+		assertEquals(findMember.getName(), "JOJO");
+		assertEquals(findMember.getUser_id(),"STAR PLATINUM");
+		assertEquals(findMember.getGrade(), Grade.NORMAL);
 
 	}
 
