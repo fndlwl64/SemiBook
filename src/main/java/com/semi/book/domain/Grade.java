@@ -1,5 +1,5 @@
 package com.semi.book.domain;
 
 public enum Grade {
-    VIP,NORMAL,OUT
+    VIP,NORMAL,NONE
 }
