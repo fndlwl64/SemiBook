@@ -16,7 +16,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	/*lombok*/
-	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	/*devtools*/
 	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.0'
 	/*JPA*/
@@ -24,7 +26,9 @@ dependencies {
 	/*MYSQL*/
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
 	runtimeOnly 'mysql:mysql-connector-java'
-
+	/*Mapper Interface*/
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 }
 
 tasks.named('test') {

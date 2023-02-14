@@ -2,8 +2,10 @@ package com.semi.book.api;
 
 import com.semi.book.domain.Member;
 import com.semi.book.dto.MemberDTO;
+import com.semi.book.dto.MemberMapper;
 import com.semi.book.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,4 +30,11 @@ public class MemberApiController {
         return memberRepository.findAll();
     }
 
+    @PostMapping("/post/member")
+    public MemberDTO postMember(@RequestBody MemberDTO memberDTO){
+        System.out.println("=================================");
+        System.out.println("POST MEMBER JOIN");
+        System.out.println("memberDTO.toString() = " + memberDTO.toString());
+        return memberDTO;
+    }
 }
