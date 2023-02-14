@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@ToString
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {

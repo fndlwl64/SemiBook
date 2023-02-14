@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join</title>
+  <script src="../js/crud/join.js"></script>
+</head>
+<body>
+  <div align="center">
+    <h1>JOIN PAGE</h1>
+    <form method="post" action="join" onsubmit="return joinOption(this);">
+      <table>
+        <tr>
+          <th>NAME : </th>
+          <td>
+            <input type="text" name="name">
+          </td>
+        </tr>
+        <tr>
+          <th>GENDER : </th>
+          <td>
+            <select name="gender" name="gender">
+              <option value="MALE">male</option>
+              <option value="FEMALE">female</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>ID : </th>
+          <td>
+            <input type="text" name="userId">
+          </td>
+        </tr>
+        <tr>
+          <th>PASSWORD : </th>
+          <td>
+            <input type="password" name="password">
+          </td>
+        </tr>
+        <tr>
+          <th>PHONE NUMBER : </th>
+          <td>
+            <input type="text" name="phone">
+          </td>
+        </tr>
+        <tr>
+          <th>ADDRESS : </th>
+          <td>
+            <input type="text" name="address">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="submit"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</body>
+</html>

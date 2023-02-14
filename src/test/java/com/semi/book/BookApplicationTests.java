@@ -24,7 +24,7 @@ class BookApplicationTests {
 	}
 
 	@Test
-	@DisplayName("JPA TEST")
+	@DisplayName("JOIN TEST")
 	@Transactional
 	public void putMemberTest(){
 		Member member = Member.builder()

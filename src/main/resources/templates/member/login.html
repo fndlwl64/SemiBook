@@ -8,8 +8,8 @@
 <body>
   <div align="center">
     <h1>LOGIN PAGE</h1>
-    <!---->
-    <form action="/" method="get" onsubmit="return loginOption(this);">
+
+    <form action="main" method="get" onsubmit="return loginOption(this);">
       <table>
         <tr>
           <th>name</th>
@@ -20,7 +20,12 @@
           <td><input type="text" name="id"></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="submit" value="submit"></td>
+          <td align="center"><input type="submit" value="submit"></td>
+        </tr>
+        <tr>
+          <td><a href="join">Join</a></td>
+          <td><a href="find_id">Find ID</a></td>
+          <td><a href="find_pwd">Find PWD</a></td>
         </tr>
       </table>
     </form>
