@@ -1,6 +1,7 @@
 package com.semi.book.api;
 
 import com.semi.book.domain.Member;
+import com.semi.book.domain.State;
 import com.semi.book.dto.MemberDTO;
 import com.semi.book.dto.MemberMapper;
 import com.semi.book.repository.MemberRepository;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
+    @Autowired
     private final MemberRepository memberRepository;
     @PostMapping("/get/member")
     public MemberDTO getMember(@RequestBody MemberDTO memberDTO){
@@ -31,10 +33,21 @@ public class MemberApiController {
     }
 
     @PostMapping("/post/member")
-    public MemberDTO postMember(@RequestBody MemberDTO memberDTO){
+    public String postMember(@RequestBody MemberDTO memberDTO){
         System.out.println("=================================");
         System.out.println("POST MEMBER JOIN");
         System.out.println("memberDTO.toString() = " + memberDTO.toString());
-        return memberDTO;
+
+        memberDTO.setState("ON");
+        memberDTO.setGrade("NORMAL");
+
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
+
+        System.out.println("==================================");
+        System.out.println("member.toString() = " + member.toString());
+
+        memberRepository.save(member);
+
+        return "1";
     }
 }

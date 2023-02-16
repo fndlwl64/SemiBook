@@ -12,14 +12,15 @@ import java.time.LocalDateTime;
 public class MemberDTO {
     private Long id;
     private String name;
-    private Gender gender;
+    private String gender;
     private String userId;
     private String password;
     private String phone;
     private String address;
-    private LocalDateTime createDate;
-    private LocalDateTime lastUpdateDate;
-    private Grade grade;
-    private State state;
+    private String email;
+    private String createDate;
+    private String lastUpdateDate;
+    private String grade;
+    private String state;
 
 }
