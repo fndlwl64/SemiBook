@@ -16,5 +16,5 @@ function joinOption(sub){
         body: JSON.stringify(memberDTO),
     }).then((response) => response.json()).then((data) => console.log(data))
 
-    return false;
+    return true;
 }

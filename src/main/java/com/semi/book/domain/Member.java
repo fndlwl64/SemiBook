@@ -30,6 +30,8 @@ public class Member {
     private String phone;
     @Column(name = "address" , length = 100 , nullable = false)
     private String address;
+    @Column(name = "email" , length = 100 , nullable = false)
+    private String email;
     @CreatedDate
     private LocalDateTime createDate;
     @LastModifiedDate
@@ -40,14 +42,15 @@ public class Member {
     private State state;
 
     @Builder
-
-    public Member(String name, Gender gender, String userId, String password, String phone, String address, LocalDateTime createDate, LocalDateTime lastUpdatedDate, Grade grade, State state) {
+    public Member(Long id, String name, Gender gender, String userId, String password, String phone, String address, String email, LocalDateTime createDate, LocalDateTime lastUpdatedDate, Grade grade, State state) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.userId = userId;
         this.password = password;
         this.phone = phone;
         this.address = address;
+        this.email = email;
         this.createDate = createDate;
         this.lastUpdatedDate = lastUpdatedDate;
         this.grade = grade;
