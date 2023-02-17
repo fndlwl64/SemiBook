@@ -37,8 +37,10 @@ public class Member {
     @LastModifiedDate
     private LocalDateTime lastUpdatedDate;
     @Enumerated(EnumType.STRING)
+    @Column(name="grade" , nullable = false)
     private Grade grade;
     @Enumerated(EnumType.STRING)
+    @Column(name="state" , nullable = false)
     private State state;
 
     @Builder
