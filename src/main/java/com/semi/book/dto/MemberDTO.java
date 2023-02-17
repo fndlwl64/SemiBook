@@ -1,11 +1,6 @@
 package com.semi.book.dto;
 
-import com.semi.book.domain.Gender;
-import com.semi.book.domain.Grade;
-import com.semi.book.domain.State;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Data
 @ToString
