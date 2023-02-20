@@ -39,6 +39,9 @@ dependencies {
 	/**spring security*/
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.5'
 
+	/*GSON*/
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
+
 }
 
 tasks.named('test') {
