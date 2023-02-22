@@ -6,7 +6,7 @@ async function joinOption(sub){
         }
     }
     /*member 객체 restcontroller에 전송*/
-    const response = await fetch("post/member",{
+    const response = await fetch("api/post/member",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -24,7 +24,7 @@ async function joinOption(sub){
         alert('fail')
         /*임시 해결책*/
         location.href = "/join";
-        /*return false 가 안 먹혀서 form 태그의 action이 작동하는 문제 있음*/
+        /*return false 가 안 먹혀서 html 파일에서 form 태그의 action이 작동하는 문제 있음*/
         return false;
     }
 }

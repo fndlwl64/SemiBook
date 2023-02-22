@@ -4,16 +4,24 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
+@Builder
 @ToString
-@EntityListeners(AuditingEntityListener.class)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Member implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
@@ -43,19 +51,41 @@ public class Member {
     @Column(name="state" , nullable = false)
     private State state;
 
-    @Builder
-    public Member(Long id, String name, Gender gender, String userId, String password, String phone, String address, String email, LocalDateTime createDate, LocalDateTime lastUpdatedDate, Grade grade, State state) {
-        this.id = id;
-        this.name = name;
-        this.gender = gender;
-        this.userId = userId;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.createDate = createDate;
-        this.lastUpdatedDate = lastUpdatedDate;
-        this.grade = grade;
-        this.state = state;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public String getUsername() {
+        return userId;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
 }
