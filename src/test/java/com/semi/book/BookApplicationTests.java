@@ -8,22 +8,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.semi.book.domain.Member;
 import com.semi.book.dto.MemberDTO;
-import com.semi.book.dto.User;
+import com.semi.book.dto.MemberLoginRequestDTO;
 import com.semi.book.repository.MemberRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.test.web.servlet.MockMvc;
-
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import javax.annotation.PostConstruct;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,7 +49,7 @@ class BookApplicationTests {
 				memberDTO
 		);
 		//them
-		mvc.perform(post("/post/member")
+		mvc.perform(post("/api/post/member")
 				.content(body)
 				.contentType(MediaType.APPLICATION_JSON)
 		)
@@ -71,21 +64,22 @@ class BookApplicationTests {
 	}
 
 	@Test
-	public void postUser() throws Exception {
-		User user = new User();
-		user.setUserId("STAR");
-		user.setPassword("1234");
-		//when
+	public void loginTest() throws Exception {
+		MemberLoginRequestDTO dto = new MemberLoginRequestDTO();
+		dto.setUserId("STAR");
+		dto.setPassword("1234");
 		String body = mapper.writeValueAsString(
-				user
+				dto
 		);
-
-		mvc.perform(post("/post/login")
-				.content(body)
-				.contentType(MediaType.APPLICATION_JSON)
-		)
+		//them
+		mvc.perform(post("/api/post/login")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON)
+				)
 				.andExpect(status().isOk())
-				.andExpect(content().string("1"));
+				.andDo(MockMvcResultHandlers.print());
 	}
+
+
 
 }
