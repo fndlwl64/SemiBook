@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-//@EnableWebMvc
 public class MemberApiController {
     @Autowired
     private final MemberRepository memberRepository;
@@ -27,9 +27,14 @@ public class MemberApiController {
 
     @PostMapping("/post/login")
     public TokenInfo login(@RequestBody MemberLoginRequestDTO memberLoginRequestDto) {
-        String memberId = memberLoginRequestDto.getUserId();
-        String password = memberLoginRequestDto.getPassword();
-        TokenInfo tokenInfo = memberService.login(memberId, password);
+        TokenInfo tokenInfo = null;
+        try {
+            String memberId = memberLoginRequestDto.getUserId();
+            String password = memberLoginRequestDto.getPassword();
+            tokenInfo = memberService.login(memberId, password);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return tokenInfo;
     }
     @PostMapping("/post/member")
