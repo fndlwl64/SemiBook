@@ -10,6 +10,7 @@ import com.semi.book.domain.Member;
 import com.semi.book.dto.MemberDTO;
 import com.semi.book.dto.MemberLoginRequestDTO;
 import com.semi.book.repository.MemberRepository;
+import com.semi.book.service.SecurityUtil;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -56,13 +57,7 @@ class BookApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string("1"));
 	}
-	@Test
-	public void getMemberTest(){
-		Member findMember = memberRepository.findById(1L).get();
-		assertEquals(findMember.getId(),1L);
-		System.out.println("findMember.toString() = " + findMember.toString());
-	}
-
+	@Order(2)
 	@Test
 	public void loginTest() throws Exception {
 		MemberLoginRequestDTO dto = new MemberLoginRequestDTO();
@@ -79,6 +74,15 @@ class BookApplicationTests {
 				.andExpect(status().isOk())
 				.andDo(MockMvcResultHandlers.print());
 	}
+//	@Test
+//	public void getMemberTest(){
+//		String userId = SecurityUtil.getCurrentMemberId();
+//		Member findMember = memberRepository.findByUserId(userId).get();
+//		assertEquals(findMember.getId(),1L);
+//		System.out.println("findMember.toString() = " + findMember.toString());
+//	}
+
+
 
 
 

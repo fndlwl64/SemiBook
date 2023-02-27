@@ -7,11 +7,13 @@ import com.semi.book.domain.Member.MemberBuilder;
 import com.semi.book.domain.State;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-22T18:05:19+0900",
+    date = "2023-02-27T21:06:29+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.15.1 (Oracle Corporation)"
 )
 public class MemberMapperImpl implements MemberMapper {
@@ -43,6 +45,10 @@ public class MemberMapperImpl implements MemberMapper {
         if ( memberDTO.getState() != null ) {
             member.state( Enum.valueOf( State.class, memberDTO.getState() ) );
         }
+        List<String> list = memberDTO.getRoles();
+        if ( list != null ) {
+            member.roles( new ArrayList<String>( list ) );
+        }
 
         return member.build();
     }
@@ -73,6 +79,10 @@ public class MemberMapperImpl implements MemberMapper {
         }
         if ( member.getState() != null ) {
             memberDTO.setState( member.getState().name() );
+        }
+        List<String> list = member.getRoles();
+        if ( list != null ) {
+            memberDTO.setRoles( new ArrayList<String>( list ) );
         }
 
         return memberDTO;

@@ -1,4 +1,4 @@
-package com.semi.book.common.config;
+package com.semi.book.common.jwt.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;

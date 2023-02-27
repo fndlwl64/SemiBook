@@ -2,6 +2,8 @@ package com.semi.book.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @ToString
 public class MemberDTO {
@@ -17,5 +19,6 @@ public class MemberDTO {
     private String lastUpdateDate;
     private String grade;
     private String state;
+    private List<String> roles;
 
 }
