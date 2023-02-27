@@ -7,13 +7,15 @@ import com.semi.book.dto.MemberMapper;
 import com.semi.book.dto.TokenInfo;
 import com.semi.book.repository.MemberRepository;
 import com.semi.book.service.MemberService;
+import com.semi.book.service.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,9 +43,8 @@ public class MemberApiController {
     public String postMember(@RequestBody MemberDTO memberDTO){
         memberDTO.setState("ON");
         memberDTO.setGrade("NORMAL");
-
-        System.out.println(memberDTO.toString());
-
+        List<String> roles = new ArrayList<>(Arrays.asList("USER"));
+        memberDTO.setRoles(roles);
         try {
             Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
             System.out.println(member.toString());
@@ -53,5 +54,10 @@ public class MemberApiController {
             return "0";
         }
         return "1";
+    }
+    @GetMapping("/get/token")
+    public String getToken(){
+        String userId = SecurityUtil.getCurrentMemberId();
+        return  userId;
     }
 }

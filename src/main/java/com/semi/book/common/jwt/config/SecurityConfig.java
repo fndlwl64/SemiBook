@@ -1,4 +1,4 @@
-package com.semi.book.common.config;
+package com.semi.book.common.jwt.config;
 
 import com.semi.book.common.jwt.JwtAuthenticationFilter;
 import com.semi.book.common.jwt.JwtTokenProvider;
@@ -28,8 +28,9 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/api/check/**").hasRole("USER")
+                .antMatchers("/api/post/login").permitAll()
+                .antMatchers("/api/post/member").permitAll()
+                .antMatchers("/api/get/token").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
