@@ -23,7 +23,6 @@ import java.util.List;
 public class MemberApiController {
     @Autowired
     private final MemberRepository memberRepository;
-
     @Autowired
     private final MemberService memberService;
 
@@ -47,7 +46,6 @@ public class MemberApiController {
         memberDTO.setRoles(roles);
         try {
             Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
-            System.out.println(member.toString());
             memberRepository.save(member);
         }catch (Exception e){
             System.err.println(e);
@@ -55,6 +53,17 @@ public class MemberApiController {
         }
         return "1";
     }
+    @PostMapping("/post/findId")
+    public String findId(@RequestBody MemberDTO memberDTO){
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
+        return memberService.findId(member);
+    }
+    @PostMapping("/post/findPwd")
+    public String findPwd(@RequestBody MemberDTO memberDTO){
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
+        return memberService.findPwd(member);
+    }
+
     @GetMapping("/get/token")
     public String getToken(){
         String userId = SecurityUtil.getCurrentMemberId();

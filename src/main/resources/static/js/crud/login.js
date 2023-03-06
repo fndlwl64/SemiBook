@@ -10,7 +10,7 @@ function loginOption(){
     }
     console.log(memberDTO);
     /*객체 restcontroller에 전송*/
-    fetch('api/post/login', {
+    fetch('/api/post/login', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -20,9 +20,10 @@ function loginOption(){
     .then(response => response.json())
     .then(response => {
         if(response){
-            localStorage.setItem("jwt-token",response.accessToken);
-            location.href = 'main';
-        }else{
+            console.log(response);
+            localStorage.setItem("jwt-token",response.grantType+' '+response.accessToken);
+            location.href = '/web/main/home';
+        }else{1
             alert('fail');
         }
     })

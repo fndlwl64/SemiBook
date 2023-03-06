@@ -10,7 +10,7 @@ function joinOption(){
     }
     console.log(memberDTO);
     /*member 객체 restcontroller에 전송*/
-    fetch("api/post/member",{
+    fetch("/api/post/member",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,7 +20,7 @@ function joinOption(){
     .then(response => response.json())
     .then(response => {
         if(response){
-            location.href = 'login';
+            location.href = '/user/login';
         }else{
             alert('fail');
         }
