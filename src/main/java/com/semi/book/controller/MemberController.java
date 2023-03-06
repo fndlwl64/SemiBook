@@ -6,24 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+/*Html 페이지 요청*/
 @Controller
 public class MemberController {
 
-    @GetMapping("login")
-    public String login(){
-        return "member/login";
+    @GetMapping("/user/{name}")
+    public String user(@PathVariable("name") String name){
+        return "/member/"+name;
     }
-    @GetMapping("join")
-    public String join(){
-        return "member/join";
-    }
-    @PostMapping("join")
-    public String login(Member member){
-        return "redirect:/login";
-    }
-
-    @GetMapping("main")
-    public String main(){
-        return "main/main";
+    @GetMapping("/web/main/{name}")
+    public String main(@PathVariable("name") String name){
+        return "/main/"+name;
     }
 }

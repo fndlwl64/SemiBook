@@ -19,6 +19,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -31,6 +34,8 @@ class BookApplicationTests {
 	private MockMvc mvc;
 	@Autowired
 	private ObjectMapper mapper;
+
+	private String token = null;
 
 	@Order(1)
 	@Test
@@ -45,11 +50,12 @@ class BookApplicationTests {
 		memberDTO.setGender("MALE");
 		memberDTO.setPassword("1234");
 		memberDTO.setEmail("fndlwl@gmail.com");
+		memberDTO.setRoles(new ArrayList<>(Arrays.asList("USER")));
 		//when
 		String body = mapper.writeValueAsString(
 				memberDTO
 		);
-		//them
+		//then
 		mvc.perform(post("/api/post/member")
 				.content(body)
 				.contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +72,7 @@ class BookApplicationTests {
 		String body = mapper.writeValueAsString(
 				dto
 		);
-		//them
+		//then
 		mvc.perform(post("/api/post/login")
 						.content(body)
 						.contentType(MediaType.APPLICATION_JSON)
@@ -74,6 +80,57 @@ class BookApplicationTests {
 				.andExpect(status().isOk())
 				.andDo(MockMvcResultHandlers.print());
 	}
+	@Test
+	public void findIdTest() throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setName("JOJO");
+		memberDTO.setEmail("fndlwl@gmail.com");
+		//when
+		String body = mapper.writeValueAsString(
+				memberDTO
+		);
+		//then
+		mvc.perform(post("/api/post/findId")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON)
+				)
+				.andExpect(status().isOk())
+				.andExpect(content().string("STAR"));
+	}
+	@Test
+	public void findPwdTest() throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUserId("STAR");
+		memberDTO.setEmail("fndlwl@gmail.com");
+		//when
+		String body = mapper.writeValueAsString(
+				memberDTO
+		);
+		//then
+		mvc.perform(post("/api/post/findPwd")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON)
+				)
+				.andExpect(status().isOk())
+				.andExpect(content().string("1234"));
+	}@Test
+	public void findPwdFailTest() throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUserId("ST");
+		memberDTO.setEmail("fndlwl@gmail.com");
+		//when
+		String body = mapper.writeValueAsString(
+				memberDTO
+		);
+		//then
+		mvc.perform(post("/api/post/findPwd")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON)
+				)
+				.andExpect(status().isOk())
+				.andExpect(content().string("Wrong Id or Email"));
+	}
+
 //	@Test
 //	public void getMemberTest(){
 //		String userId = SecurityUtil.getCurrentMemberId();
