@@ -4,12 +4,15 @@ import com.semi.book.common.jwt.JwtTokenProvider;
 import com.semi.book.domain.Member;
 import com.semi.book.dto.TokenInfo;
 import com.semi.book.repository.MemberRepository;
+import com.semi.book.repository.mapping.MemberColumnMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,12 +40,8 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public String findId(Member member) {
-        Member m = memberRepository.findByNameAndEmail(member.getName(),member.getEmail()).orElse(null);
-        if (m == null) {
-            return "Wrong Name or Email";
-        }
-        return m.getUserId();
+    public MemberColumnMapping findId(Member member) {
+        return memberRepository.findByNameAndEmail(member.getName(),member.getEmail()).orElse(null);
     }
     @Transactional(readOnly = true)
     public String findPwd(Member member) {

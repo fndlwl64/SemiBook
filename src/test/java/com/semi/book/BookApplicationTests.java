@@ -131,13 +131,6 @@ class BookApplicationTests {
 				.andExpect(content().string("Wrong Id or Email"));
 	}
 
-//	@Test
-//	public void getMemberTest(){
-//		String userId = SecurityUtil.getCurrentMemberId();
-//		Member findMember = memberRepository.findByUserId(userId).get();
-//		assertEquals(findMember.getId(),1L);
-//		System.out.println("findMember.toString() = " + findMember.toString());
-//	}
 
 
 
