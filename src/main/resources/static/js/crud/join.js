@@ -1,14 +1,6 @@
 function joinOption(){
-    console.log('form : '+document.form);
-    const sub = document.forms[0];
-
-    let memberDTO = {};
-    for(var i=0; i<sub.length; i++){
-        if(sub.elements[i].name !== ''){
-            memberDTO[sub.elements[i].name] = sub.elements[i].value;
-        }
-    }
-    console.log(memberDTO);
+    /*member.js의 함수 사용*/
+    memberDTO = memberForm();
     /*member 객체 restcontroller에 전송*/
     fetch("/api/post/member",{
         method: "POST",
