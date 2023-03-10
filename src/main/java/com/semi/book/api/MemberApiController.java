@@ -6,6 +6,7 @@ import com.semi.book.dto.MemberLoginRequestDTO;
 import com.semi.book.dto.MemberMapper;
 import com.semi.book.dto.TokenInfo;
 import com.semi.book.repository.MemberRepository;
+import com.semi.book.repository.mapping.MemberColumnMapping;
 import com.semi.book.service.MemberService;
 import com.semi.book.service.SecurityUtil;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,7 @@ public class MemberApiController {
         return "1";
     }
     @PostMapping("/post/findId")
-    public String findId(@RequestBody MemberDTO memberDTO){
+    public MemberColumnMapping findId(@RequestBody MemberDTO memberDTO){
         Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
         return memberService.findId(member);
     }
