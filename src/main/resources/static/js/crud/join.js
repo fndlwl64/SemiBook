@@ -11,7 +11,8 @@ function joinOption(){
     })
     .then(response => response.json())
     .then(response => {
-        if(response){
+        console.log(response);
+        if(response === true){
             location.href = '/user/login';
         }else{
             alert('fail');

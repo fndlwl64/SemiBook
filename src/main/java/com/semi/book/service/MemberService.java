@@ -23,8 +23,14 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public void join(Member member){
+    public void join(MemberDTO memberDTO){
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
         memberRepository.save(member);
+//        try {
+//            memberRepository.save(member);
+//        }catch (Exception e){
+//            System.err.println("join error = " + e);
+//        }
     }
 
     @Transactional(readOnly = true)

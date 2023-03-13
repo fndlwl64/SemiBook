@@ -10,6 +10,7 @@ import com.semi.book.service.MemberService;
 import com.semi.book.service.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,19 +39,14 @@ public class MemberApiController {
         return tokenInfo;
     }
     @PostMapping("/post/member")
-    public String postMember(@RequestBody MemberDTO memberDTO){
+    public ResponseEntity<Boolean> postMember(@RequestBody MemberDTO memberDTO){
         memberDTO.setState("ON");
         memberDTO.setGrade("NORMAL");
         List<String> roles = new ArrayList<>(Arrays.asList("USER"));
         memberDTO.setRoles(roles);
-        try {
-            Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
-            memberRepository.save(member);
-        }catch (Exception e){
-            System.err.println(e);
-            return "0";
-        }
-        return "1";
+        memberService.join(memberDTO);
+        return  ResponseEntity.ok(true);
+
     }
     @PostMapping("/get/findId")
     public MemberDTO.MemberUserId findId(@RequestBody MemberDTO memberDTO){
