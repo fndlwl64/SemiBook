@@ -17,6 +17,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	/*lombok*/
 	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    testImplementation 'junit:junit:4.13.1'
+	testImplementation 'junit:junit:4.13.1'
+	testImplementation 'junit:junit:4.13.1'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	/*devtools*/

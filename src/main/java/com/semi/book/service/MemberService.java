@@ -2,9 +2,10 @@ package com.semi.book.service;
 
 import com.semi.book.common.jwt.JwtTokenProvider;
 import com.semi.book.domain.Member;
+import com.semi.book.dto.MemberDTO;
+import com.semi.book.dto.MemberMapper;
 import com.semi.book.dto.TokenInfo;
 import com.semi.book.repository.MemberRepository;
-import com.semi.book.repository.mapping.MemberColumnMapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -40,16 +41,14 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public MemberColumnMapping findId(Member member) {
+    public MemberDTO.MemberUserId findId(MemberDTO memberDTO) {
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
         return memberRepository.findByNameAndEmail(member.getName(),member.getEmail()).orElse(null);
     }
     @Transactional(readOnly = true)
-    public String findPwd(Member member) {
-        Member m = memberRepository.findByUserIdAndEmail(member.getUserId(),member.getEmail()).orElse(null);
-        if (m == null){
-            return "Wrong Id or Email";
-        }
-        return m.getPassword();
+    public MemberDTO.MemberPassword findPwd(MemberDTO memberDTO) {
+        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
+        return memberRepository.findByUserIdAndEmail(member.getUserId(),member.getEmail()).orElse(null);
     }
 
 

@@ -6,13 +6,11 @@ import com.semi.book.dto.MemberLoginRequestDTO;
 import com.semi.book.dto.MemberMapper;
 import com.semi.book.dto.TokenInfo;
 import com.semi.book.repository.MemberRepository;
-import com.semi.book.repository.mapping.MemberColumnMapping;
 import com.semi.book.service.MemberService;
 import com.semi.book.service.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,15 +52,15 @@ public class MemberApiController {
         }
         return "1";
     }
-    @PostMapping("/post/findId")
-    public MemberColumnMapping findId(@RequestBody MemberDTO memberDTO){
-        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
-        return memberService.findId(member);
+    @PostMapping("/get/findId")
+    public MemberDTO.MemberUserId findId(@RequestBody MemberDTO memberDTO){
+        MemberDTO.MemberUserId memberUserId = memberService.findId(memberDTO);
+        return memberUserId;
     }
-    @PostMapping("/post/findPwd")
-    public String findPwd(@RequestBody MemberDTO memberDTO){
-        Member member = MemberMapper.INSTANCE.dtoToMember(memberDTO);
-        return memberService.findPwd(member);
+    @PostMapping("/get/findPwd")
+    public MemberDTO.MemberPassword findPwd(@RequestBody MemberDTO memberDTO){
+        MemberDTO.MemberPassword memberPassword = memberService.findPwd(memberDTO);
+        return memberPassword;
     }
 
     @GetMapping("/get/token")
