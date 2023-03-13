@@ -75,8 +75,9 @@ class BookApplicationTests {
 				.contentType(MediaType.APPLICATION_JSON)
 		)
 				.andExpect(status().isOk())
-				.andExpect(content().string("1"))
+				.andExpect(content().string("true"))
 				;
+
 	}
 	@Order(2)
 	@Test
