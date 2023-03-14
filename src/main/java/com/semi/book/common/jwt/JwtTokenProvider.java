@@ -36,8 +36,6 @@ public class JwtTokenProvider {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-        System.out.println("authentication = " + authentication);
-        System.out.println("authorities = " + authorities);
 
         long now = (new Date()).getTime();
         // Access Token 생성

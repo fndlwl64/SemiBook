@@ -31,7 +31,7 @@ public class SecurityConfig {
                 /*Front Path*/
                 .antMatchers("/").permitAll()
                 .antMatchers("/user/**").permitAll()
-                .antMatchers("/web/**").permitAll()
+                .antMatchers("/web/main/**").hasRole("USER")
                 .antMatchers("/js/**").permitAll()
                 /*BackEnd Path*/
                 .antMatchers("/api/**").permitAll()
