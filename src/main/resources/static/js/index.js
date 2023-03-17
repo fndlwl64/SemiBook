@@ -3,25 +3,20 @@ window.onload = function(){
     const sectionTag = document.querySelector('#section');
     const articleTag = document.querySelector('#article');
     const loginInput = document.querySelector('#login');
-    console.log('success');
+
+    /*HTML 스크립트*/
     loginInput.addEventListener('click',(event)=>{
         event.preventDefault();
-
+        /*새로운 페이지에 필요한 js*/
         const script = document.createElement('script');
         script.src = '/js/login.js';
         document.head.appendChild(script);
 
-//        headElement.innerHTML =
-//        `
-//            <meta charset="UTF-8">
-//            <title>Login</title>
-//            <script src="/js/index.js"></script>
-//            <script src="/js/login.js"></script>
-//            <script src="/js/crud/member.js"></script>
-//            <script src="/js/crud/login.js"></script>
-//        `
+        while (articleTag.firstChild) {
+          articleTag.removeChild(articleTag.firstChild);
+        };
 
-        articleTag.innerHTML =
+        articleTag.insertAdjacentHTML('afterbegin',
         `
         <form>
           <table>
@@ -41,6 +36,7 @@ window.onload = function(){
             </tr>
           </table>
         </form>
-        `;
+        `
+        );
     });
 }
