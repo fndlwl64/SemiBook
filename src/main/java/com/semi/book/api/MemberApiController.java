@@ -26,6 +26,10 @@ public class MemberApiController {
     @Autowired
     private final MemberService memberService;
 
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello";
+    }
     @PostMapping("/post/login")
     public TokenInfo login(@RequestBody MemberLoginRequestDTO memberLoginRequestDto) {
         TokenInfo tokenInfo = null;
