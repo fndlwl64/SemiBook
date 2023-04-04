@@ -10,12 +10,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-05T19:03:41+0900",
+    date = "2023-04-04T17:33:20+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.15.1 (Oracle Corporation)"
 )
+@Component
 public class MemberMapperImpl implements MemberMapper {
 
     @Override
