@@ -105,7 +105,16 @@ joinInput.addEventListener('click',(event)=>{
 });
 ```
  
+ # 실행
+ 자바 11 버전으로 실행이 가능하고 gradle로 개발했음으로 gradle.bat를 build 하면 됩니다.
  
-
+ - gradle.bat을 빌드
+ - 생성된 디렉토리 내부로 이동
+ - jar 파일 실행
+ ```bash
+ $ gradle.bat build
+ $ cd build/libs
+ $ java -jar [jar 파일 이름].jar
+```
 
 
