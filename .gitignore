@@ -88,9 +88,6 @@ cmake-build-*/
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
-# File-based project format
-*.iws
-
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -175,4 +172,7 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
+**/application-secret.yml
+
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij
+

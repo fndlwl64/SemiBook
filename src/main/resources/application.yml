@@ -2,6 +2,8 @@ server:
   port: 8081
 # 데브툴의 자동 리로드 기능 활성화
 spring:
+  profiles:
+    include: secret
   devtools:
     livereload:
       enabled: false
@@ -21,5 +23,3 @@ spring:
     hibernate:
       format_sql: true
       ddl-auto: create
-jwt:
-  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
