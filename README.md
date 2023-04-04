@@ -44,6 +44,6 @@ src
                 └─book
 ```
 
-#ERD
+# ERD
 
 ![ERD](https://user-images.githubusercontent.com/98505324/229707902-662729ab-f80c-4331-bcd3-3b5345747bd5.jpeg)
