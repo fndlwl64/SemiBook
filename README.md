@@ -65,11 +65,10 @@ src
 
 # 보안
 ### JWT
-- Rest API에 맞는 로그인 보안 방식으로 토큰 인증 방식 사용
 - 서버의 무상태성 유지함으로써 서버의 부담을 줄임
 ### DB와 JWT 비밀번호
 - application-secret.yml에 따로 보관
-- gitignore에 포함시켜 깃허브에 올라오지 않도록 
+- gitignore에 포함시켜 깃허브에 올라오지 않도록 함
 
 # 웹 페이지
 
